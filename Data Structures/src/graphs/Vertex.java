@@ -2,54 +2,38 @@ package graphs;
 
 public class Vertex<T> implements Comparable<Vertex<T>>
 {
-	Vertex<T> parent;
-	Neighbor neighbors;
-	T data;
+	private Vertex<T> parent;
+	private Neighbor<T> neighbors;
+	private T data;
 	
 	public Vertex()
 	{
-		
+		this.parent = this;
 	}
 	
-	public Vertex(T data)
-	{
+	public Vertex<T> data(T data) {
 		this.data = data;
-		parent = this;
+		this.parent = this;
+		return this;
 	}
 	
-	public Vertex(T data, Neighbor neighbors)
+	public Vertex<T> neighbors(Neighbor<T> neighbors)
 	{
-		this.data = data;
 		this.neighbors = neighbors;
+		this.parent = this;
+		return this;
 	}
 	
-	class Neighbor
-	{
-		/**
-	     * Neighboring vertex.
-	     */
-	    public Vertex<T> vertex;
-	    
-	    /**
-	     * Weight of edge to neighbor.
-	     */
-	    public int weight;
-	    
-	    /**
-	     * Next neighbor in the linked list of neighbors.
-	     */
-	    public Neighbor next;
-
-	    /**
-	     * Initializes a new Neighbor object.
-	     * 
-	     * @param vertex Neighbor vertex
-	     * @param weight Weight of edge to neighbor.
-	     */
-	    Neighbor(Vertex<T> vertex, int weight) {
-	    	this.vertex = vertex;
-	    	this.weight = weight;
-	    }
+	public Vertex<T> getParent() {
+		return this.parent;
+	}
+	
+	public Neighbor<T> getNeighbors() {
+		return this.neighbors;
+	}
+	
+	public T getData() {
+		return this.data;
 	}
 
 	@Override
